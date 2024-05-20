@@ -2142,7 +2142,7 @@
     const-string v0, "ro.ril.svlte1x"
 
     .line 1388
-    invoke-static {v0, p2}, Landroid/os/SemSystemProperties;->getBoolean(Ljava/lang/String;Z)Z
+    invoke-static {v0, p2}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
 
     move-result p2
 

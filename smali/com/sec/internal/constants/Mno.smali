@@ -6674,7 +6674,7 @@
 
     const-string v1, ""
 
-    invoke-static {v0, v1}, Landroid/os/SemSystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0, v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -6689,7 +6689,7 @@
 
     const-string v1, ""
 
-    invoke-static {v0, v1}, Landroid/os/SemSystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0, v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -6700,7 +6700,7 @@
     .locals 6
 
     .line 1154
-    invoke-static {}, Landroid/os/SemSystemProperties;->getCountryIso()Ljava/lang/String;
+    invoke-static {}, Landroid/os/SystemProperties;->getCountryIso()Ljava/lang/String;
 
     move-result-object v0
 
@@ -6775,12 +6775,12 @@
     const-string v1, ""
 
     .line 1036
-    invoke-static {v0, v1}, Landroid/os/SemSystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0, v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
     .line 1037
-    invoke-static {}, Landroid/os/SemSystemProperties;->getCountryIso()Ljava/lang/String;
+    invoke-static {}, Landroid/os/SystemProperties;->getCountryIso()Ljava/lang/String;
 
     move-result-object v1
 

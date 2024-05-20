@@ -1143,7 +1143,7 @@
     const-string p2, "persist.omc.sales_code"
 
     .line 635
-    invoke-static {p2, v2}, Landroid/os/SemSystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {p2, v2}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object p2
 
@@ -1157,7 +1157,7 @@
     const-string p2, "ro.csc.sales_code"
 
     .line 637
-    invoke-static {p2}, Landroid/os/SemSystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {p2}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
 
     .line 640
     :cond_8
@@ -1769,7 +1769,7 @@
     const-string v2, ""
 
     .line 715
-    invoke-static {v1, v2}, Landroid/os/SemSystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v1, v2}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
 
@@ -1783,7 +1783,7 @@
     const-string v1, "ro.csc.sales_code"
 
     .line 718
-    invoke-static {v1}, Landroid/os/SemSystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
 

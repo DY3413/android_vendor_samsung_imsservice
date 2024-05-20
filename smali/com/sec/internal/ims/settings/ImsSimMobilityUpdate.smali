@@ -923,7 +923,7 @@
     const-string v3, "persist.ims.simmobility"
 
     .line 252
-    invoke-static {v3, v1}, Landroid/os/SemSystemProperties;->getInt(Ljava/lang/String;I)I
+    invoke-static {v3, v1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
 
     move-result v1
 
@@ -1068,7 +1068,7 @@
 
     const-string p0, "ro.product.first_api_level"
 
-    invoke-static {p0, v1}, Landroid/os/SemSystemProperties;->getInt(Ljava/lang/String;I)I
+    invoke-static {p0, v1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
 
     move-result p0
 

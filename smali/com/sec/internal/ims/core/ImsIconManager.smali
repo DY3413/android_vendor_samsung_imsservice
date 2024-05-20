@@ -3058,7 +3058,7 @@
     const-string v1, ""
 
     .line 1231
-    invoke-static {v0, v1}, Landroid/os/SemSystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0, v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -4131,7 +4131,7 @@
     const-string v5, "ro.product.first_api_level"
 
     .line 369
-    invoke-static {v5, v4}, Landroid/os/SemSystemProperties;->getInt(Ljava/lang/String;I)I
+    invoke-static {v5, v4}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
 
     move-result v5
 

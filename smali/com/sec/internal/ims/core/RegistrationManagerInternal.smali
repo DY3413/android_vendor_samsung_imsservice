@@ -5969,7 +5969,7 @@
 
     const-string v4, "ril.ims.ltevoicesupport"
 
-    invoke-static {v4}, Landroid/os/SemSystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v4}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v4
 

@@ -114,7 +114,7 @@
     const-string/jumbo p1, "true"
 
     .line 269
-    invoke-static {p0, p1}, Landroid/os/SemSystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
+    invoke-static {p0, p1}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
 
     const/4 p0, 0x0
 

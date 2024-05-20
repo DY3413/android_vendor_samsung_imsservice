@@ -3193,7 +3193,7 @@
     const-string v1, "ril.lte.voice.status"
 
     .line 1128
-    invoke-static {v1, v0}, Landroid/os/SemSystemProperties;->getInt(Ljava/lang/String;I)I
+    invoke-static {v1, v0}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
 
     move-result v0
 
@@ -5346,7 +5346,7 @@
     const-string v6, "ro.telephony.default_network"
 
     .line 599
-    invoke-static {v6, v3}, Landroid/os/SemSystemProperties;->getInt(Ljava/lang/String;I)I
+    invoke-static {v6, v3}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
 
     move-result v3
 
@@ -8070,7 +8070,7 @@
 
     const-string v0, "ro.ril.svlte1x"
 
-    invoke-static {v0}, Landroid/os/SemSystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
