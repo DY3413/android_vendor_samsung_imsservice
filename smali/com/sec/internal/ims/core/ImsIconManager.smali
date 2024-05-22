@@ -624,7 +624,11 @@
     if-ne p1, v3, :cond_1
 
     .line 921
-    invoke-static {}, Lcom/sec/ims/extensions/Extensions$UserHandle;->myUserId()I
+    invoke-static {}, Landroid/os/Process;->myUserHandle()Landroid/os/UserHandle;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Landroid/os/UserHandle;->getIdentifier()I
 
     move-result p1
 

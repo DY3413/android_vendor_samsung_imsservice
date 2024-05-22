@@ -30,7 +30,11 @@
     invoke-static {p1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 35
-    invoke-static {}, Lcom/sec/ims/extensions/Extensions$UserHandle;->myUserId()I
+    invoke-static {}, Landroid/os/Process;->myUserHandle()Landroid/os/UserHandle;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/os/UserHandle;->getIdentifier()I
 
     move-result v0
 

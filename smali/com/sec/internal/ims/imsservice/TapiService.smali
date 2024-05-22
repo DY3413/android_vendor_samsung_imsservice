@@ -153,7 +153,11 @@
 
     .line 62
     :cond_2
-    invoke-static {}, Lcom/sec/ims/extensions/Extensions$UserHandle;->myUserId()I
+    invoke-static {}, Landroid/os/Process;->myUserHandle()Landroid/os/UserHandle;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Landroid/os/UserHandle;->getIdentifier()I
 
     move-result p0
 

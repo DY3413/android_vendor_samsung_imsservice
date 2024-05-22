@@ -4726,7 +4726,11 @@
 
     invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-static {}, Lcom/sec/ims/extensions/Extensions$UserHandle;->myUserId()I
+    invoke-static {}, Landroid/os/Process;->myUserHandle()Landroid/os/UserHandle;
+
+    move-result-object p2
+
+    invoke-virtual {p2}, Landroid/os/UserHandle;->getIdentifier()I
 
     move-result p2
 

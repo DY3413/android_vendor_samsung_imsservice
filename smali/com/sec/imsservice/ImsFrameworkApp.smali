@@ -26,7 +26,11 @@
     invoke-super {p0}, Landroid/app/Application;->onCreate()V
 
     .line 40
-    invoke-static {}, Lcom/sec/ims/extensions/Extensions$UserHandle;->myUserId()I
+    invoke-static {}, Landroid/os/Process;->myUserHandle()Landroid/os/UserHandle;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/os/UserHandle;->getIdentifier()I
 
     move-result v0
 
