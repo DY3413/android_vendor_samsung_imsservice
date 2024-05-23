@@ -431,7 +431,11 @@
 
     move-result-object v0
 
-    invoke-static {}, Landroid/os/SystemProperties;->getCountryIso()Ljava/lang/String;
+    const-string v3, "ro.csc.countryiso_code"
+
+    const-string v4, ""
+
+    invoke-static {v3, v4}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
