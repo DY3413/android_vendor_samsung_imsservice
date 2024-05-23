@@ -690,7 +690,7 @@
     .locals 1
 
     .line 3249
-    sget-boolean v0, Lcom/sec/ims/extensions/Extensions$Build;->IS_DEBUGGABLE:Z
+    sget-boolean v0, Landroid/os/Build;->IS_DEBUGGABLE:Z
 
     if-nez v0, :cond_1
 
