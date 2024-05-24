@@ -1,0 +1,336 @@
+.class Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;
+.super Ljava/lang/Object;
+.source "NSDSModule.java"
+
+# interfaces
+.implements Landroid/content/SharedPreferences$OnSharedPreferenceChangeListener;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x0
+    name = null
+.end annotation
+
+
+# instance fields
+.field final synthetic this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+
+# direct methods
+.method constructor <init>(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)V
+    .registers 2
+
+    .line 145
+    iput-object p1, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public onSharedPreferenceChanged(Landroid/content/SharedPreferences;Ljava/lang/String;)V
+    .registers 5
+
+    .line 148
+    iget-object p1, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p1}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetLOG_TAG(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)Ljava/lang/String;
+
+    move-result-object p1
+
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "OnSharedPreferenceChangeListener: "
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string v1, " changed."
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {p1, v0}, Lcom/sec/internal/log/IMSLog;->i(Ljava/lang/String;Ljava/lang/String;)V
+
+    const-string p1, "device_state"
+
+    .line 149
+    invoke-virtual {p2, p1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result p1
+
+    if-eqz p1, :cond_2e
+
+    .line 150
+    iget-object p0, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p0}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$mqueuePushTokenUpdateIf(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)V
+
+    goto/16 :goto_121
+
+    :cond_2e
+    const-string/jumbo p1, "sent_token_to_server"
+
+    .line 151
+    invoke-virtual {p2, p1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result p1
+
+    if-eqz p1, :cond_93
+
+    .line 152
+    iget-object p1, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p1}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetmContext(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)Landroid/content/Context;
+
+    move-result-object p1
+
+    iget-object p2, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p2}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetmBaseFlowImpl(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/flow/BaseFlowImpl;
+
+    move-result-object p2
+
+    invoke-virtual {p2}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/flow/BaseFlowImpl;->getDeviceId()Ljava/lang/String;
+
+    move-result-object p2
+
+    invoke-static {p1, p2}, Lcom/sec/internal/ims/entitlement/storagehelper/NSDSSharedPrefHelper;->isGcmTokenSentToServer(Landroid/content/Context;Ljava/lang/String;)Z
+
+    move-result p1
+
+    .line 153
+    iget-object p2, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p2}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetLOG_TAG(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)Ljava/lang/String;
+
+    move-result-object p2
+
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "isTokenSent: "
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {p2, v0}, Lcom/sec/internal/log/IMSLog;->i(Ljava/lang/String;Ljava/lang/String;)V
+
+    if-eqz p1, :cond_121
+
+    .line 155
+    iget-object p1, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p1}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$mupdateGcmPushTokenInDb(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)V
+
+    .line 156
+    iget-object p1, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p1}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$mqueuePushTokenUpdateIf(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)V
+
+    .line 158
+    iget-object p1, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p1}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetmContext(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)Landroid/content/Context;
+
+    move-result-object p1
+
+    iget-object p2, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p2}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetmSimManager(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)Lcom/sec/internal/interfaces/ims/core/ISimManager;
+
+    move-result-object p2
+
+    invoke-interface {p2}, Lcom/sec/internal/interfaces/ims/core/ISimManager;->getSimSlotIndex()I
+
+    move-result p2
+
+    const-string v0, "com.sec.vsim.ericssonnsds.REFRESH_TOKEN"
+
+    invoke-static {p1, p2, v0}, Lcom/sec/internal/ims/entitlement/util/IntentScheduler;->stopTimer(Landroid/content/Context;ILjava/lang/String;)V
+
+    .line 159
+    iget-object p0, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p0}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetLOG_TAG(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)Ljava/lang/String;
+
+    move-result-object p0
+
+    const-string p1, "RefrehTokenTimer stopped"
+
+    invoke-static {p0, p1}, Lcom/sec/internal/log/IMSLog;->i(Ljava/lang/String;Ljava/lang/String;)V
+
+    goto/16 :goto_121
+
+    :cond_93
+    const-string/jumbo p1, "service_provision_state"
+
+    .line 161
+    invoke-virtual {p2, p1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result p1
+
+    if-eqz p1, :cond_e8
+
+    .line 162
+    iget-object p1, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p1}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetmContext(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)Landroid/content/Context;
+
+    move-result-object p1
+
+    iget-object p2, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p2}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetmBaseFlowImpl(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/flow/BaseFlowImpl;
+
+    move-result-object p2
+
+    .line 163
+    invoke-virtual {p2}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/flow/BaseFlowImpl;->getDeviceId()Ljava/lang/String;
+
+    move-result-object p2
+
+    .line 162
+    invoke-static {p1, p2}, Lcom/sec/internal/ims/entitlement/storagehelper/NSDSSharedPrefHelper;->isVoWifiServiceProvisioned(Landroid/content/Context;Ljava/lang/String;)Z
+
+    move-result p1
+
+    .line 164
+    iget-object p2, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p2}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetLOG_TAG(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)Ljava/lang/String;
+
+    move-result-object p2
+
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "isSvcProvCompleted: "
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {p2, v0}, Lcom/sec/internal/log/IMSLog;->i(Ljava/lang/String;Ljava/lang/String;)V
+
+    if-eqz p1, :cond_d2
+
+    .line 166
+    iget-object p0, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p0}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$mscheduleServiceProvisionCheckTimer(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)V
+
+    goto :goto_121
+
+    .line 168
+    :cond_d2
+    iget-object p1, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p1}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetmContext(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)Landroid/content/Context;
+
+    move-result-object p1
+
+    iget-object p0, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p0}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetmSimManager(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)Lcom/sec/internal/interfaces/ims/core/ISimManager;
+
+    move-result-object p0
+
+    invoke-interface {p0}, Lcom/sec/internal/interfaces/ims/core/ISimManager;->getSimSlotIndex()I
+
+    move-result p0
+
+    const-string p2, "com.sec.vsim.ericssonnsds.SVC_PROVISION_CHECK_TIMEOUT"
+
+    invoke-static {p1, p0, p2}, Lcom/sec/internal/ims/entitlement/util/IntentScheduler;->stopTimer(Landroid/content/Context;ILjava/lang/String;)V
+
+    goto :goto_121
+
+    :cond_e8
+    const-string p1, "activate_after_oos"
+
+    .line 170
+    invoke-virtual {p2, p1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result p2
+
+    if-eqz p2, :cond_121
+
+    .line 171
+    iget-object p2, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p2}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetmContext(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)Landroid/content/Context;
+
+    move-result-object p2
+
+    iget-object v0, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {v0}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetmBaseFlowImpl(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/flow/BaseFlowImpl;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/flow/BaseFlowImpl;->getDeviceId()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {p2, v0, p1}, Lcom/sec/internal/ims/entitlement/storagehelper/NSDSSharedPrefHelper;->get(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    const-string/jumbo p2, "retry"
+
+    .line 173
+    invoke-static {p1, p2}, Landroid/text/TextUtils;->equals(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
+
+    move-result p1
+
+    if-eqz p1, :cond_121
+
+    .line 174
+    iget-object p1, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p1}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetLOG_TAG(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)Ljava/lang/String;
+
+    move-result-object p1
+
+    const-string p2, "[ATT_AutoOn] AUTOON_RETRY"
+
+    invoke-static {p1, p2}, Lcom/sec/internal/log/IMSLog;->i(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 175
+    iget-object p0, p0, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule$1;->this$0:Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;
+
+    invoke-static {p0}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$fgetmWfcAutoOnRetryCount(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;)I
+
+    move-result p1
+
+    invoke-static {p0, p1}, Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;->-$$Nest$mscheduleRetryWFCAutoOnTimer(Lcom/sec/internal/ims/entitlement/nsds/ericssonnsds/NSDSModule;I)V
+
+    :cond_121
+    :goto_121
+    return-void
+.end method

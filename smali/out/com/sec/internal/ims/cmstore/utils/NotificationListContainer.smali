@@ -1,0 +1,421 @@
+.class public Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;
+.super Ljava/lang/Object;
+.source "NotificationListContainer.java"
+
+
+# static fields
+.field private static final MAX_SIZE:I = 0x3c
+
+.field private static final TAG:Ljava/lang/String;
+
+.field private static sInstance:Ljava/util/HashMap;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/HashMap<",
+            "Ljava/lang/Integer;",
+            "Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+
+# instance fields
+.field private container:Ljava/util/TreeMap;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/TreeMap<",
+            "Ljava/lang/Long;",
+            "[",
+            "Lcom/sec/internal/omanetapi/nc/data/NotificationList;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .registers 1
+
+    .line 14
+    new-instance v0, Ljava/util/HashMap;
+
+    invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+
+    sput-object v0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->sInstance:Ljava/util/HashMap;
+
+    .line 15
+    const-class v0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;
+
+    invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
+
+    move-result-object v0
+
+    sput-object v0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->TAG:Ljava/lang/String;
+
+    return-void
+.end method
+
+.method private constructor <init>()V
+    .registers 2
+
+    .line 19
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 16
+    new-instance v0, Ljava/util/TreeMap;
+
+    invoke-direct {v0}, Ljava/util/TreeMap;-><init>()V
+
+    iput-object v0, p0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->container:Ljava/util/TreeMap;
+
+    return-void
+.end method
+
+.method public static getInstance(I)Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;
+    .registers 3
+
+    .line 25
+    sget-object v0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->sInstance:Ljava/util/HashMap;
+
+    invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_19
+
+    .line 26
+    sget-object v0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->sInstance:Ljava/util/HashMap;
+
+    invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object p0
+
+    invoke-virtual {v0, p0}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;
+
+    goto :goto_28
+
+    .line 28
+    :cond_19
+    new-instance v0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;
+
+    invoke-direct {v0}, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;-><init>()V
+
+    .line 29
+    sget-object v1, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->sInstance:Ljava/util/HashMap;
+
+    invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object p0
+
+    invoke-virtual {v1, p0, v0}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-object p0, v0
+
+    :goto_28
+    return-object p0
+.end method
+
+
+# virtual methods
+.method public declared-synchronized clear()V
+    .registers 2
+
+    monitor-enter p0
+
+    .line 66
+    :try_start_1
+    iget-object v0, p0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->container:Ljava/util/TreeMap;
+
+    invoke-virtual {v0}, Ljava/util/TreeMap;->clear()V
+    :try_end_6
+    .catchall {:try_start_1 .. :try_end_6} :catchall_8
+
+    .line 67
+    monitor-exit p0
+
+    return-void
+
+    :catchall_8
+    move-exception v0
+
+    monitor-exit p0
+
+    throw v0
+.end method
+
+.method public declared-synchronized insertContainer(Ljava/lang/Long;[Lcom/sec/internal/omanetapi/nc/data/NotificationList;)V
+    .registers 6
+
+    monitor-enter p0
+
+    .line 35
+    :try_start_1
+    sget-object v0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->TAG:Ljava/lang/String;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "insertContainer, index="
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    const-string v2, ",container.size()= "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget-object v2, p0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->container:Ljava/util/TreeMap;
+
+    invoke-virtual {v2}, Ljava/util/TreeMap;->size()I
+
+    move-result v2
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 36
+    iget-object v0, p0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->container:Ljava/util/TreeMap;
+
+    invoke-virtual {v0}, Ljava/util/TreeMap;->size()I
+
+    move-result v0
+    :try_end_2b
+    .catchall {:try_start_1 .. :try_end_2b} :catchall_38
+
+    const/16 v1, 0x3c
+
+    if-lt v0, v1, :cond_31
+
+    .line 37
+    monitor-exit p0
+
+    return-void
+
+    .line 39
+    :cond_31
+    :try_start_31
+    iget-object v0, p0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->container:Ljava/util/TreeMap;
+
+    invoke-virtual {v0, p1, p2}, Ljava/util/TreeMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    :try_end_36
+    .catchall {:try_start_31 .. :try_end_36} :catchall_38
+
+    .line 40
+    monitor-exit p0
+
+    return-void
+
+    :catchall_38
+    move-exception p1
+
+    monitor-exit p0
+
+    throw p1
+.end method
+
+.method public declared-synchronized isEmpty()Z
+    .registers 2
+
+    monitor-enter p0
+
+    .line 62
+    :try_start_1
+    iget-object v0, p0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->container:Ljava/util/TreeMap;
+
+    invoke-virtual {v0}, Ljava/util/TreeMap;->isEmpty()Z
+
+    move-result v0
+    :try_end_7
+    .catchall {:try_start_1 .. :try_end_7} :catchall_9
+
+    monitor-exit p0
+
+    return v0
+
+    :catchall_9
+    move-exception v0
+
+    monitor-exit p0
+
+    throw v0
+.end method
+
+.method public declared-synchronized peekFirstIndex()J
+    .registers 6
+
+    monitor-enter p0
+
+    .line 43
+    :try_start_1
+    iget-object v0, p0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->container:Ljava/util/TreeMap;
+
+    invoke-virtual {v0}, Ljava/util/TreeMap;->isEmpty()Z
+
+    move-result v0
+    :try_end_7
+    .catchall {:try_start_1 .. :try_end_7} :catchall_31
+
+    if-eqz v0, :cond_d
+
+    .line 44
+    monitor-exit p0
+
+    const-wide/16 v0, -0x1
+
+    return-wide v0
+
+    .line 46
+    :cond_d
+    :try_start_d
+    iget-object v0, p0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->container:Ljava/util/TreeMap;
+
+    invoke-virtual {v0}, Ljava/util/TreeMap;->firstKey()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Ljava/lang/Long;
+
+    invoke-virtual {v0}, Ljava/lang/Long;->longValue()J
+
+    move-result-wide v0
+
+    .line 47
+    sget-object v2, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->TAG:Ljava/lang/String;
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "peekFirstIndex, index="
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, v0, v1}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    :try_end_2f
+    .catchall {:try_start_d .. :try_end_2f} :catchall_31
+
+    .line 48
+    monitor-exit p0
+
+    return-wide v0
+
+    :catchall_31
+    move-exception v0
+
+    monitor-exit p0
+
+    throw v0
+.end method
+
+.method public declared-synchronized popFirstEntry()Ljava/util/Map$Entry;
+    .registers 5
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Ljava/util/Map$Entry<",
+            "Ljava/lang/Long;",
+            "[",
+            "Lcom/sec/internal/omanetapi/nc/data/NotificationList;",
+            ">;"
+        }
+    .end annotation
+
+    monitor-enter p0
+
+    .line 52
+    :try_start_1
+    iget-object v0, p0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->container:Ljava/util/TreeMap;
+
+    invoke-virtual {v0}, Ljava/util/TreeMap;->isEmpty()Z
+
+    move-result v0
+    :try_end_7
+    .catchall {:try_start_1 .. :try_end_7} :catchall_37
+
+    if-eqz v0, :cond_c
+
+    .line 53
+    monitor-exit p0
+
+    const/4 p0, 0x0
+
+    return-object p0
+
+    .line 55
+    :cond_c
+    :try_start_c
+    iget-object v0, p0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->container:Ljava/util/TreeMap;
+
+    invoke-virtual {v0}, Ljava/util/TreeMap;->firstEntry()Ljava/util/Map$Entry;
+
+    move-result-object v0
+
+    .line 56
+    sget-object v1, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->TAG:Ljava/lang/String;
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "popFirstEntry, index="
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-interface {v0}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
+
+    move-result-object v3
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 57
+    iget-object v1, p0, Lcom/sec/internal/ims/cmstore/utils/NotificationListContainer;->container:Ljava/util/TreeMap;
+
+    invoke-interface {v0}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Ljava/util/TreeMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+    :try_end_35
+    .catchall {:try_start_c .. :try_end_35} :catchall_37
+
+    .line 58
+    monitor-exit p0
+
+    return-object v0
+
+    :catchall_37
+    move-exception v0
+
+    monitor-exit p0
+
+    throw v0
+.end method

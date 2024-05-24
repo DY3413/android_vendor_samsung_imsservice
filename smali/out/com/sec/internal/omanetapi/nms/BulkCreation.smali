@@ -1,0 +1,246 @@
+.class public Lcom/sec/internal/omanetapi/nms/BulkCreation;
+.super Lcom/sec/internal/omanetapi/nms/BaseNMSRequest;
+.source "BulkCreation.java"
+
+
+# static fields
+.field public static final TAG:Ljava/lang/String;
+
+.field private static final serialVersionUID:J = 0x543cfc1877965590L
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .registers 1
+
+    .line 23
+    const-class v0, Lcom/sec/internal/omanetapi/nms/BulkCreation;
+
+    invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
+
+    move-result-object v0
+
+    sput-object v0, Lcom/sec/internal/omanetapi/nms/BulkCreation;->TAG:Ljava/lang/String;
+
+    return-void
+.end method
+
+.method public constructor <init>(Ljava/lang/String;Lcom/sec/internal/ims/cmstore/MessageStoreClient;)V
+    .registers 3
+
+    .line 34
+    invoke-direct {p0, p1, p2}, Lcom/sec/internal/omanetapi/nms/BaseNMSRequest;-><init>(Ljava/lang/String;Lcom/sec/internal/ims/cmstore/MessageStoreClient;)V
+
+    return-void
+.end method
+
+.method public constructor <init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/sec/internal/ims/cmstore/MessageStoreClient;)V
+    .registers 6
+
+    .line 28
+    invoke-direct/range {p0 .. p5}, Lcom/sec/internal/omanetapi/nms/BaseNMSRequest;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/sec/internal/ims/cmstore/MessageStoreClient;)V
+
+    .line 30
+    invoke-virtual {p0}, Lcom/sec/internal/omanetapi/nms/BulkCreation;->buildAPISpecificURLFromBase()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method protected buildAPISpecificURLFromBase()V
+    .registers 3
+
+    .line 79
+    iget-object v0, p0, Lcom/sec/internal/omanetapi/nms/BaseNMSRequest;->mBaseUrl:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/net/Uri;->buildUpon()Landroid/net/Uri$Builder;
+
+    move-result-object v0
+
+    const-string v1, "objects"
+
+    .line 81
+    invoke-virtual {v0, v1}, Landroid/net/Uri$Builder;->appendPath(Ljava/lang/String;)Landroid/net/Uri$Builder;
+
+    const-string v1, "operations"
+
+    .line 82
+    invoke-virtual {v0, v1}, Landroid/net/Uri$Builder;->appendPath(Ljava/lang/String;)Landroid/net/Uri$Builder;
+
+    const-string v1, "bulkCreation"
+
+    .line 83
+    invoke-virtual {v0, v1}, Landroid/net/Uri$Builder;->appendPath(Ljava/lang/String;)Landroid/net/Uri$Builder;
+
+    .line 85
+    invoke-virtual {v0}, Landroid/net/Uri$Builder;->build()Landroid/net/Uri;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/net/Uri;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/sec/internal/omanetapi/nms/BaseNMSRequest;->mBaseUrl:Ljava/lang/String;
+
+    .line 86
+    sget-object p0, Lcom/sec/internal/omanetapi/nms/BulkCreation;->TAG:Ljava/lang/String;
+
+    invoke-static {p0, v0}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+.end method
+
+.method public initPostRequest(Lcom/sec/internal/omanetapi/nms/data/ObjectList;ZLjava/util/List;)V
+    .registers 8
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/sec/internal/omanetapi/nms/data/ObjectList;",
+            "Z",
+            "Ljava/util/List<",
+            "Lcom/sec/internal/helper/httpclient/HttpPostBody;",
+            ">;)V"
+        }
+    .end annotation
+
+    const-string v0, "initPostRequest: postBody: "
+
+    if-nez p3, :cond_5
+
+    return-void
+
+    .line 43
+    :cond_5
+    :try_start_5
+    sget-object v1, Lcom/sec/internal/omanetapi/nms/BulkCreation;->TAG:Ljava/lang/String;
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p3}, Ljava/lang/Object;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    :try_end_1d
+    .catch Ljava/lang/OutOfMemoryError; {:try_start_5 .. :try_end_1d} :catch_1e
+
+    goto :goto_36
+
+    .line 45
+    :catch_1e
+    sget-object v1, Lcom/sec/internal/omanetapi/nms/BulkCreation;->TAG:Ljava/lang/String;
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-interface {p3}, Ljava/util/List;->size()I
+
+    move-result v0
+
+    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v1, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 50
+    :goto_36
+    iget-object v0, p0, Lcom/sec/internal/omanetapi/nms/BaseNMSRequest;->mBaseUrl:Ljava/lang/String;
+
+    invoke-virtual {p0, v0}, Lcom/sec/internal/helper/httpclient/HttpRequestParams;->setUrl(Ljava/lang/String;)Lcom/sec/internal/helper/httpclient/HttpRequestParams;
+
+    .line 51
+    iget-object v0, p0, Lcom/sec/internal/omanetapi/nms/BaseNMSRequest;->mNMSRequestHeaderMap:Ljava/util/Map;
+
+    const-string v1, "Content-Type"
+
+    const-string v2, "multipart/form-data"
+
+    invoke-interface {v0, v1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 53
+    iget-object v0, p0, Lcom/sec/internal/omanetapi/nms/BaseNMSRequest;->mNMSRequestHeaderMap:Ljava/util/Map;
+
+    invoke-virtual {p0, v0}, Lcom/sec/internal/helper/httpclient/HttpRequestParams;->setHeaders(Ljava/util/Map;)Lcom/sec/internal/helper/httpclient/HttpRequestParams;
+
+    .line 54
+    sget-object v0, Lcom/sec/internal/helper/httpclient/HttpRequestParams$Method;->POST:Lcom/sec/internal/helper/httpclient/HttpRequestParams$Method;
+
+    invoke-virtual {p0, v0}, Lcom/sec/internal/helper/httpclient/HttpRequestParams;->setMethod(Lcom/sec/internal/helper/httpclient/HttpRequestParams$Method;)Lcom/sec/internal/helper/httpclient/HttpRequestParams;
+
+    const/4 v0, 0x0
+
+    .line 55
+    invoke-virtual {p0, v0}, Lcom/sec/internal/helper/httpclient/HttpRequestParams;->setFollowRedirects(Z)Lcom/sec/internal/helper/httpclient/HttpRequestParams;
+
+    .line 58
+    new-instance v0, Ljava/util/ArrayList;
+
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+
+    if-eqz p2, :cond_75
+
+    .line 62
+    new-instance p2, Lcom/sec/internal/omanetapi/common/data/OMAApiRequestParam$BulkCreationRequest;
+
+    invoke-direct {p2}, Lcom/sec/internal/omanetapi/common/data/OMAApiRequestParam$BulkCreationRequest;-><init>()V
+
+    .line 63
+    iput-object p1, p2, Lcom/sec/internal/omanetapi/common/data/OMAApiRequestParam$BulkCreationRequest;->objectList:Lcom/sec/internal/omanetapi/nms/data/ObjectList;
+
+    .line 64
+    new-instance p1, Lcom/google/gson/Gson;
+
+    invoke-direct {p1}, Lcom/google/gson/Gson;-><init>()V
+
+    .line 65
+    new-instance v1, Lcom/sec/internal/helper/httpclient/HttpPostBody;
+
+    const-string v2, "application/json"
+
+    .line 69
+    invoke-virtual {p1, p2}, Lcom/google/gson/Gson;->toJson(Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object p1
+
+    const-string p2, "form-data; name=\"root-fields\""
+
+    invoke-direct {v1, p2, v2, p1}, Lcom/sec/internal/helper/httpclient/HttpPostBody;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 65
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 73
+    :cond_75
+    invoke-interface {v0, p3}, Ljava/util/List;->addAll(Ljava/util/Collection;)Z
+
+    .line 74
+    new-instance p1, Lcom/sec/internal/helper/httpclient/HttpPostBody;
+
+    invoke-direct {p1, v0}, Lcom/sec/internal/helper/httpclient/HttpPostBody;-><init>(Ljava/util/List;)V
+
+    invoke-virtual {p0, p1}, Lcom/sec/internal/helper/httpclient/HttpRequestParams;->setPostBody(Lcom/sec/internal/helper/httpclient/HttpPostBody;)Lcom/sec/internal/helper/httpclient/HttpRequestParams;
+
+    return-void
+.end method

@@ -1,0 +1,142 @@
+.class Lcom/sec/internal/ims/config/ConfigProvider$ReadCapDiscoveryParm;
+.super Ljava/lang/Object;
+.source "ConfigProvider.java"
+
+# interfaces
+.implements Lcom/sec/internal/ims/config/ConfigProvider$IReadConfigParam;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/sec/internal/ims/config/ConfigProvider;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x0
+    name = "ReadCapDiscoveryParm"
+.end annotation
+
+
+# instance fields
+.field final synthetic this$0:Lcom/sec/internal/ims/config/ConfigProvider;
+
+
+# direct methods
+.method constructor <init>(Lcom/sec/internal/ims/config/ConfigProvider;)V
+    .registers 2
+
+    .line 959
+    iput-object p1, p0, Lcom/sec/internal/ims/config/ConfigProvider$ReadCapDiscoveryParm;->this$0:Lcom/sec/internal/ims/config/ConfigProvider;
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public readParam(Ljava/lang/String;I)Ljava/util/Map;
+    .registers 4
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/lang/String;",
+            "I)",
+            "Ljava/util/Map<",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            ">;"
+        }
+    .end annotation
+
+    .line 962
+    iget-object p0, p0, Lcom/sec/internal/ims/config/ConfigProvider$ReadCapDiscoveryParm;->this$0:Lcom/sec/internal/ims/config/ConfigProvider;
+
+    const-string/jumbo v0, "root/application/1/capdiscovery/"
+
+    invoke-virtual {p0, v0, p2}, Lcom/sec/internal/ims/config/ConfigProvider;->getStorageByPath(Ljava/lang/String;I)Lcom/sec/internal/interfaces/ims/config/IStorageAdapter;
+
+    move-result-object p0
+
+    const-string p2, "capdiscoveryallowedprefixes"
+
+    .line 963
+    invoke-virtual {p2, p1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result p2
+
+    if-eqz p2, :cond_19
+
+    const-string/jumbo p1, "root/application/1/capdiscovery/capdiscoverywhitelist/capdiscoveryallowedprefixes/prefix"
+
+    .line 965
+    invoke-static {p1, p0}, Lcom/sec/internal/ims/config/ConfigProvider;->getCapAllowedPrefixes(Ljava/lang/String;Lcom/sec/internal/interfaces/ims/config/IStorageAdapter;)Ljava/util/Map;
+
+    move-result-object p0
+
+    return-object p0
+
+    :cond_19
+    const-string p2, "msgcapvalidity"
+
+    .line 967
+    invoke-virtual {p2, p1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result p2
+
+    if-nez p2, :cond_3e
+
+    const-string p2, "lastseenactive"
+
+    .line 968
+    invoke-virtual {p2, p1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result p2
+
+    if-eqz p2, :cond_2a
+
+    goto :goto_3e
+
+    .line 973
+    :cond_2a
+    new-instance p2, Ljava/lang/StringBuilder;
+
+    invoke-direct {p2}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {p2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p2, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-interface {p0, p1}, Lcom/sec/internal/interfaces/ims/config/IStorageAdapter;->readAll(Ljava/lang/String;)Ljava/util/Map;
+
+    move-result-object p0
+
+    return-object p0
+
+    .line 970
+    :cond_3e
+    :goto_3e
+    new-instance p2, Ljava/lang/StringBuilder;
+
+    invoke-direct {p2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string/jumbo v0, "root/application/1/capdiscovery/ext/joyn/"
+
+    invoke-virtual {p2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p2, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-interface {p0, p1}, Lcom/sec/internal/interfaces/ims/config/IStorageAdapter;->readAll(Ljava/lang/String;)Ljava/util/Map;
+
+    move-result-object p0
+
+    return-object p0
+.end method

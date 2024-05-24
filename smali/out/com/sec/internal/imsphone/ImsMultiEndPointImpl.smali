@@ -1,0 +1,853 @@
+.class public Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;
+.super Lcom/android/ims/internal/IImsMultiEndpoint$Stub;
+.source "ImsMultiEndPointImpl.java"
+
+
+# instance fields
+.field private mDialogList:Ljava/util/List;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/List<",
+            "Landroid/telephony/ims/ImsExternalCallState;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private mImsMultiEndpointListener:Lcom/android/ims/internal/IImsExternalCallStateListener;
+
+.field private mPhoneId:I
+
+
+# direct methods
+.method public constructor <init>(I)V
+    .registers 3
+
+    .line 31
+    invoke-direct {p0}, Lcom/android/ims/internal/IImsMultiEndpoint$Stub;-><init>()V
+
+    const/4 v0, 0x0
+
+    .line 27
+    iput-object v0, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mImsMultiEndpointListener:Lcom/android/ims/internal/IImsExternalCallStateListener;
+
+    const/4 v0, 0x0
+
+    .line 28
+    iput v0, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mPhoneId:I
+
+    .line 29
+    new-instance v0, Ljava/util/ArrayList;
+
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+
+    iput-object v0, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mDialogList:Ljava/util/List;
+
+    .line 32
+    iput p1, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mPhoneId:I
+
+    return-void
+.end method
+
+.method private getOirExtraFromDialingNumber(Ljava/lang/String;)I
+    .registers 3
+
+    const-string/jumbo p0, "unknown"
+
+    .line 155
+    invoke-virtual {p0, p1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_b
+
+    const/4 p0, 0x3
+
+    return p0
+
+    :cond_b
+    const-string p0, "RESTRICTED"
+
+    .line 157
+    invoke-virtual {p0, p1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result p0
+
+    if-nez p0, :cond_2e
+
+    sget-object p0, Ljava/util/Locale;->US:Ljava/util/Locale;
+
+    .line 158
+    invoke-virtual {p1, p0}, Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
+
+    move-result-object p0
+
+    const-string v0, "anonymous"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_22
+
+    goto :goto_2e
+
+    :cond_22
+    const-string p0, "Coin line/payphone"
+
+    .line 160
+    invoke-virtual {p0, p1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_2c
+
+    const/4 p0, 0x4
+
+    return p0
+
+    :cond_2c
+    const/4 p0, 0x2
+
+    return p0
+
+    :cond_2e
+    :goto_2e
+    const/4 p0, 0x1
+
+    return p0
+.end method
+
+
+# virtual methods
+.method public getExternalCallStateList()Ljava/util/List;
+    .registers 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Ljava/util/List<",
+            "Landroid/telephony/ims/ImsExternalCallState;",
+            ">;"
+        }
+    .end annotation
+
+    .line 151
+    iget-object p0, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mDialogList:Ljava/util/List;
+
+    return-object p0
+.end method
+
+.method public getImsExternalCallStateListener()Lcom/android/ims/internal/IImsExternalCallStateListener;
+    .registers 1
+
+    .line 44
+    iget-object p0, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mImsMultiEndpointListener:Lcom/android/ims/internal/IImsExternalCallStateListener;
+
+    return-object p0
+.end method
+
+.method public requestImsExternalCallStateInfo()V
+    .registers 2
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    .line 54
+    iget-object v0, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mImsMultiEndpointListener:Lcom/android/ims/internal/IImsExternalCallStateListener;
+
+    iget-object p0, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mDialogList:Ljava/util/List;
+
+    invoke-interface {v0, p0}, Lcom/android/ims/internal/IImsExternalCallStateListener;->onImsExternalCallStateUpdate(Ljava/util/List;)V
+
+    return-void
+.end method
+
+.method public setDialogInfo(Lcom/sec/ims/DialogEvent;I)V
+    .registers 13
+
+    .line 58
+    iget-object v0, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mDialogList:Ljava/util/List;
+
+    invoke-interface {v0}, Ljava/util/List;->clear()V
+
+    .line 61
+    invoke-virtual {p1}, Lcom/sec/ims/DialogEvent;->getDialogList()Ljava/util/List;
+
+    move-result-object v0
+
+    invoke-interface {v0}, Ljava/util/List;->size()I
+
+    move-result v0
+
+    if-nez v0, :cond_26
+
+    .line 62
+    iget-object p0, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mDialogList:Ljava/util/List;
+
+    new-instance p1, Landroid/telephony/ims/ImsExternalCallState;
+
+    const/4 v1, -0x1
+
+    const-string p2, ""
+
+    invoke-static {p2}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+
+    move-result-object v2
+
+    const/4 v3, 0x0
+
+    const/4 v4, 0x2
+
+    const/4 v5, 0x0
+
+    const/4 v6, 0x0
+
+    move-object v0, p1
+
+    invoke-direct/range {v0 .. v6}, Landroid/telephony/ims/ImsExternalCallState;-><init>(ILandroid/net/Uri;ZIIZ)V
+
+    invoke-interface {p0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    return-void
+
+    .line 65
+    :cond_26
+    invoke-virtual {p1}, Lcom/sec/ims/DialogEvent;->getDialogList()Ljava/util/List;
+
+    move-result-object p1
+
+    invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object p1
+
+    :catch_2e
+    :cond_2e
+    :goto_2e
+    invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v0
+
+    const/4 v1, 0x1
+
+    if-eqz v0, :cond_185
+
+    invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/sec/ims/Dialog;
+
+    if-nez v0, :cond_3e
+
+    goto :goto_2e
+
+    .line 70
+    :cond_3e
+    iget v2, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mPhoneId:I
+
+    invoke-static {v2}, Lcom/sec/internal/helper/SimUtil;->getSimMno(I)Lcom/sec/internal/constants/Mno;
+
+    move-result-object v2
+
+    .line 72
+    sget-object v3, Lcom/sec/internal/constants/Mno;->VZW:Lcom/sec/internal/constants/Mno;
+
+    if-ne v2, v3, :cond_52
+
+    .line 73
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->getSipCallId()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v2}, Lcom/sec/internal/helper/ImsCallUtil;->getIdForString(Ljava/lang/String;)I
+
+    move-result v2
+
+    :goto_50
+    move v4, v2
+
+    goto :goto_5b
+
+    .line 76
+    :cond_52
+    :try_start_52
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->getDialogId()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v2}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
+
+    move-result v2
+    :try_end_5a
+    .catch Ljava/lang/NumberFormatException; {:try_start_52 .. :try_end_5a} :catch_2e
+
+    goto :goto_50
+
+    .line 83
+    :goto_5b
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->getRemoteUri()Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 86
+    invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v3
+
+    if-nez v3, :cond_2e
+
+    const-string v3, ":"
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result v5
+
+    if-nez v5, :cond_6e
+
+    goto :goto_2e
+
+    :cond_6e
+    const-string/jumbo v5, "tel:"
+
+    .line 90
+    invoke-virtual {v2, v5}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+
+    move-result v6
+
+    if-eqz v6, :cond_7e
+
+    const-string/jumbo v6, "sip:"
+
+    .line 92
+    invoke-virtual {v2, v5, v6}, Ljava/lang/String;->replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+
+    move-result-object v2
+
+    :cond_7e
+    const/4 v5, 0x4
+
+    const/16 v6, 0x8
+
+    const/4 v7, 0x2
+
+    if-eq p2, v7, :cond_88
+
+    if-eq p2, v5, :cond_88
+
+    if-ne p2, v6, :cond_9e
+
+    .line 100
+    :cond_88
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->getRemoteDispName()Ljava/lang/String;
+
+    move-result-object v8
+
+    invoke-static {v8}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v8
+
+    if-nez v8, :cond_9e
+
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->getRemoteDispName()Ljava/lang/String;
+
+    move-result-object v8
+
+    invoke-virtual {v2, v8}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result v8
+
+    if-eqz v8, :cond_9e
+
+    const/4 v8, 0x0
+
+    goto :goto_9f
+
+    :cond_9e
+    move v8, v1
+
+    .line 105
+    :goto_9f
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->getRemoteDispName()Ljava/lang/String;
+
+    move-result-object v9
+
+    invoke-static {v9}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v9
+
+    if-nez v9, :cond_c3
+
+    if-eqz v8, :cond_c3
+
+    .line 106
+    new-instance v8, Ljava/lang/StringBuilder;
+
+    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v8, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string v2, ";displayName="
+
+    invoke-virtual {v8, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->getRemoteDispName()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v8, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v8}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    :cond_c3
+    if-eq p2, v7, :cond_c9
+
+    if-eq p2, v5, :cond_c9
+
+    if-ne p2, v6, :cond_160
+
+    .line 113
+    :cond_c9
+    invoke-virtual {v2, v3}, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
+
+    move-result v3
+
+    add-int/2addr v3, v1
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
+    move-result-object v3
+
+    .line 114
+    invoke-static {v3}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v8
+
+    if-nez v8, :cond_13b
+
+    .line 115
+    invoke-direct {p0, v3}, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->getOirExtraFromDialingNumber(Ljava/lang/String;)I
+
+    move-result v8
+
+    .line 116
+    new-instance v9, Ljava/lang/StringBuilder;
+
+    invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v9, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string v2, ";oir="
+
+    invoke-virtual {v9, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v9, v8}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    const-string v8, "Conference call"
+
+    .line 117
+    invoke-virtual {v3, v8}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result v3
+
+    const-string v8, ";cmc_pd_state="
+
+    if-nez v3, :cond_129
+
+    .line 118
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->getCallType()I
+
+    move-result v3
+
+    const/4 v9, 0x5
+
+    if-eq v3, v9, :cond_129
+
+    .line 119
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->getCallType()I
+
+    move-result v3
+
+    const/4 v9, 0x6
+
+    if-ne v3, v9, :cond_109
+
+    goto :goto_129
+
+    .line 121
+    :cond_109
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->getCallType()I
+
+    move-result v1
+
+    const/4 v3, 0x7
+
+    if-eq v1, v3, :cond_116
+
+    .line 122
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->getCallType()I
+
+    move-result v1
+
+    if-ne v1, v6, :cond_13b
+
+    .line 123
+    :cond_116
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, v7}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    goto :goto_13b
+
+    .line 120
+    :cond_129
+    :goto_129
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    :cond_13b
+    :goto_13b
+    if-eq p2, v5, :cond_13f
+
+    if-ne p2, v6, :cond_140
+
+    :cond_13f
+    move p2, v7
+
+    .line 131
+    :cond_140
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string v2, ";cmc_type="
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v2, ";callslot="
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->getCallSlot()I
+
+    move-result v2
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 134
+    :cond_160
+    invoke-static {v2}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+
+    move-result-object v5
+
+    .line 137
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->getCallType()I
+
+    move-result v1
+
+    invoke-static {v1}, Lcom/sec/internal/imsphone/DataTypeConvertor;->convertToGoogleCallType(I)I
+
+    move-result v8
+
+    .line 138
+    iget-object v1, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mDialogList:Ljava/util/List;
+
+    new-instance v2, Landroid/telephony/ims/ImsExternalCallState;
+
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->isPullAvailable()Z
+
+    move-result v6
+
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->getState()I
+
+    move-result v7
+
+    invoke-virtual {v0}, Lcom/sec/ims/Dialog;->isHeld()Z
+
+    move-result v9
+
+    move-object v3, v2
+
+    invoke-direct/range {v3 .. v9}, Landroid/telephony/ims/ImsExternalCallState;-><init>(ILandroid/net/Uri;ZIIZ)V
+
+    invoke-interface {v1, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    goto/16 :goto_2e
+
+    .line 140
+    :cond_185
+    new-instance p1, Ljava/lang/StringBuffer;
+
+    const-string p2, "DE="
+
+    invoke-direct {p1, p2}, Ljava/lang/StringBuffer;-><init>(Ljava/lang/String;)V
+
+    .line 141
+    iget-object p0, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mDialogList:Ljava/util/List;
+
+    invoke-interface {p0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object p0
+
+    :goto_192
+    invoke-interface {p0}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result p2
+
+    if-eqz p2, :cond_1f4
+
+    invoke-interface {p0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object p2
+
+    check-cast p2, Landroid/telephony/ims/ImsExternalCallState;
+
+    .line 142
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "["
+
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p2}, Landroid/telephony/ims/ImsExternalCallState;->getCallId()I
+
+    move-result v2
+
+    const v3, 0x186a0
+
+    rem-int/2addr v2, v3
+
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v2, ","
+
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 143
+    invoke-virtual {p2}, Landroid/telephony/ims/ImsExternalCallState;->getCallState()I
+
+    move-result v3
+
+    const-string v4, "T"
+
+    if-ne v3, v1, :cond_1c3
+
+    const-string v3, "C"
+
+    goto :goto_1c4
+
+    :cond_1c3
+    move-object v3, v4
+
+    :goto_1c4
+    invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 144
+    invoke-virtual {p2}, Landroid/telephony/ims/ImsExternalCallState;->isCallHeld()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_1d3
+
+    const-string v3, "H"
+
+    goto :goto_1d5
+
+    :cond_1d3
+    const-string v3, "A"
+
+    :goto_1d5
+    invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p2}, Landroid/telephony/ims/ImsExternalCallState;->isCallPullable()Z
+
+    move-result p2
+
+    if-eqz p2, :cond_1e2
+
+    goto :goto_1e4
+
+    :cond_1e2
+    const-string v4, "F"
+
+    :goto_1e4
+    invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string p2, "]"
+
+    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p2
+
+    .line 142
+    invoke-virtual {p1, p2}, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+
+    goto :goto_192
+
+    .line 146
+    :cond_1f4
+    invoke-virtual {p1}, Ljava/lang/StringBuffer;->toString()Ljava/lang/String;
+
+    move-result-object p0
+
+    const p1, 0x30000038
+
+    .line 147
+    invoke-static {p1, p0}, Lcom/sec/internal/log/IMSLog;->c(ILjava/lang/String;)V
+
+    return-void
+.end method
+
+.method public setListener(Lcom/android/ims/internal/IImsExternalCallStateListener;)V
+    .registers 2
+
+    .line 40
+    iput-object p1, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mImsMultiEndpointListener:Lcom/android/ims/internal/IImsExternalCallStateListener;
+
+    return-void
+.end method
+
+.method public setP2pPushDialogInfo(Lcom/sec/ims/DialogEvent;I)V
+    .registers 12
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    .line 168
+    iget-object p2, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mDialogList:Ljava/util/List;
+
+    invoke-interface {p2}, Ljava/util/List;->clear()V
+
+    .line 170
+    invoke-virtual {p1}, Lcom/sec/ims/DialogEvent;->getDialogList()Ljava/util/List;
+
+    move-result-object p1
+
+    invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object p1
+
+    :catch_d
+    :goto_d
+    invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result p2
+
+    if-eqz p2, :cond_4b
+
+    invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object p2
+
+    check-cast p2, Lcom/sec/ims/Dialog;
+
+    if-nez p2, :cond_1c
+
+    goto :goto_d
+
+    .line 177
+    :cond_1c
+    :try_start_1c
+    invoke-virtual {p2}, Lcom/sec/ims/Dialog;->getDialogId()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v0}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
+
+    move-result v2
+    :try_end_24
+    .catch Ljava/lang/NumberFormatException; {:try_start_1c .. :try_end_24} :catch_d
+
+    const-string/jumbo v0, "sip:D2D@samsungims.com;d2d.push"
+
+    .line 183
+    invoke-static {v0}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+
+    move-result-object v3
+
+    .line 184
+    invoke-virtual {p2}, Lcom/sec/ims/Dialog;->getCallType()I
+
+    move-result v0
+
+    invoke-static {v0}, Lcom/sec/internal/imsphone/DataTypeConvertor;->convertToGoogleCallType(I)I
+
+    move-result v6
+
+    .line 185
+    iget-object v0, p0, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->mDialogList:Ljava/util/List;
+
+    new-instance v8, Landroid/telephony/ims/ImsExternalCallState;
+
+    invoke-virtual {p2}, Lcom/sec/ims/Dialog;->isPullAvailable()Z
+
+    move-result v4
+
+    invoke-virtual {p2}, Lcom/sec/ims/Dialog;->getState()I
+
+    move-result v5
+
+    invoke-virtual {p2}, Lcom/sec/ims/Dialog;->isHeld()Z
+
+    move-result v7
+
+    move-object v1, v8
+
+    invoke-direct/range {v1 .. v7}, Landroid/telephony/ims/ImsExternalCallState;-><init>(ILandroid/net/Uri;ZIIZ)V
+
+    invoke-interface {v0, v8}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    goto :goto_d
+
+    .line 187
+    :cond_4b
+    invoke-virtual {p0}, Lcom/sec/internal/imsphone/ImsMultiEndPointImpl;->requestImsExternalCallStateInfo()V
+
+    return-void
+.end method
