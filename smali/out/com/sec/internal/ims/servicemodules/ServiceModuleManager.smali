@@ -5366,7 +5366,7 @@
     const-string/jumbo p1, "ro.product.first_api_level"
 
     .line 448
-    invoke-static {p1, v1}, Landroid/os/SemSystemProperties;->getInt(Ljava/lang/String;I)I
+    invoke-static {p1, v1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
 
     move-result p1
 

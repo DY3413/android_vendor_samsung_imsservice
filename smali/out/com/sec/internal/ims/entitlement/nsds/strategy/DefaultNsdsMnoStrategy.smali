@@ -92,7 +92,7 @@
     const-string v1, ""
 
     .line 296
-    invoke-static {v0, v1}, Landroid/os/SemSystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0, v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -101,7 +101,7 @@
     const/4 v3, 0x0
 
     .line 309
-    invoke-static {v2, v3}, Landroid/os/SemSystemProperties;->getInt(Ljava/lang/String;I)I
+    invoke-static {v2, v3}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
 
     move-result v2
 
@@ -364,7 +364,7 @@
 .end method
 
 .method public final getDeviceGroup(ILjava/lang/String;)Ljava/lang/String;
-    .registers 7
+    .registers 8
 
     .line 250
     iget-object v0, p0, Lcom/sec/internal/ims/entitlement/nsds/strategy/DefaultNsdsMnoStrategy;->mStrategyType:Lcom/sec/internal/ims/entitlement/nsds/strategy/DefaultNsdsMnoStrategy$NsdsStrategyType;
@@ -424,7 +424,11 @@
 
     move-result-object v0
 
-    invoke-static {}, Landroid/os/SemSystemProperties;->getCountryIso()Ljava/lang/String;
+    const-string/jumbo v4, "ro.csc.country_code"
+
+    const-string v2, ""
+
+    invoke-static {v4, v2}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v2
 
